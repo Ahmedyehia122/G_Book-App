@@ -1,5 +1,5 @@
 import 'package:bookly_app/core/constants/images.dart';
-import 'package:bookly_app/core/constants/routes.dart';
+import 'package:bookly_app/core/class/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -24,7 +24,7 @@ class HomeViewAppBar extends StatelessWidget {
           // search icon
           IconButton(
             onPressed: () {
-              GoRouter.of(context).push(AppRoutes.kSearchView);
+              GoRouter.of(context).push(Routes.kSearchView);
             },
             icon: const Icon(
               FontAwesomeIcons.magnifyingGlass,

@@ -1,5 +1,5 @@
 import 'package:bookly_app/core/constants/fonts.dart';
-import 'package:bookly_app/core/constants/routes.dart';
+import 'package:bookly_app/core/class/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -18,7 +18,7 @@ class BooklyApp extends StatelessWidget {
           brightness: Brightness.dark,
           fontFamily: AppFonts.montserrat,
         ),
-        routerConfig: AppRoutes.router,
+        routerConfig: Routes.router,
       ),
     );
   }
