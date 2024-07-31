@@ -14,9 +14,14 @@ class HomeRemoteDataSourceImp extends HomeRemoteDataSource {
   HomeRemoteDataSourceImp({required this.apiService});
 
   @override
-  Future<List<BookEntitiy>> fetchBestSellerBooksListView() {
-    // TODO: implement fetchBestSellerBooksListView
-    throw UnimplementedError();
+  Future<List<BookEntitiy>> fetchBestSellerBooksListView() async {
+    var respons = await apiService.get(url: EndPoints.fetchNewsetBooks);
+
+    List<BookEntitiy> books = [];
+    for (var book in respons['items']) {
+      books.add(BookModel.fromJson(book));
+    }
+    return books;
   }
 
   @override
