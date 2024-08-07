@@ -41,7 +41,7 @@ class ServerFailure extends Failure {
   factory ServerFailure.fromResponse(int statusCode, dynamic response) {
     if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
       // it debends on which api you use(response['error']) , response == josndata
-      return ServerFailure(errMessage: response['error']);
+      return ServerFailure(errMessage: response['error']['message']);
     } else if (statusCode == 404) {
       return ServerFailure(
           errMessage: 'Your request not found, Please try again later!');
