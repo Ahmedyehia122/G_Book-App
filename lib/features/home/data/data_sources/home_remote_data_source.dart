@@ -1,9 +1,9 @@
 import 'package:bookly_app/core/class/api_service.dart';
 import 'package:bookly_app/core/constants/end_points.dart';
 import 'package:bookly_app/core/constants/hive_boxes.dart';
-import 'package:bookly_app/core/functions/save_data_locally.dart';
 import 'package:bookly_app/features/home/data/models/book_model/book_model.dart';
 import 'package:bookly_app/features/home/domain/entities/book_entitiy.dart';
+import 'package:hive/hive.dart';
 
 abstract class HomeRemoteDataSource {
   Future<List<BookEntitiy>> fetchBooksListView();
@@ -24,7 +24,9 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
       books.add(BookModel.fromJson(book));
     }
 
-    saveData(books, HiveBoxes.bestSellerBooksListView);
+    // saveBooksLocally(books, HiveBoxes.bestSellerBooksListView);
+    var box = Hive.box<BookEntitiy>(HiveBoxes.bestSellerBooksListView);
+    box.addAll(books);
 
     return books;
   }
@@ -38,7 +40,14 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
       books.add(BookModel.fromJson(book));
     }
 
-    saveData(books, HiveBoxes.booksListView);
+    // saveBooksLocally(books, HiveBoxes.booksListView);
+    var box = Hive.box<BookEntitiy>(HiveBoxes.booksListView);
+    box.addAll(books);
     return books;
   }
+
+  // void saveBooksLocally(List<BookEntitiy> books, String boxName) {
+  //   var box = Hive.box<BookEntitiy>(boxName);
+  //   box.addAll(books);
+  // }
 }
