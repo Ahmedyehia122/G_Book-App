@@ -1,4 +1,5 @@
 import 'package:bookly_app/core/constants/durations.dart';
+import 'package:bookly_app/features/home/domain/entities/book_entitiy.dart';
 import 'package:bookly_app/features/home/presentation/views/book_details_view.dart';
 import 'package:bookly_app/features/home/presentation/views/home_view.dart';
 import 'package:bookly_app/features/search/presentation/views/search_view.dart';
@@ -35,8 +36,11 @@ abstract class Routes {
 
       // book details view
       GoRoute(
-          path: kBookDetailsView,
-          builder: (context, state) => const BookDetailsView()),
+        path: kBookDetailsView,
+        builder: (context, state) => BookDetailsView(
+          book: state.extra as BookEntitiy,
+        ),
+      ),
 
       // search view
       GoRoute(

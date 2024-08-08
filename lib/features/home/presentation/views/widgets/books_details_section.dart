@@ -1,5 +1,6 @@
 import 'package:bookly_app/core/constants/fonts.dart';
 import 'package:bookly_app/core/constants/styles.dart';
+import 'package:bookly_app/features/home/domain/entities/book_entitiy.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/Books_details_view_app_bar.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/button_action.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/custom_book_image.dart';
@@ -8,7 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BookDetailsSection extends StatelessWidget {
-  const BookDetailsSection({super.key});
+  const BookDetailsSection({super.key, required this.book});
+  final BookEntitiy book;
 
   @override
   Widget build(BuildContext context) {
@@ -17,15 +19,18 @@ class BookDetailsSection extends StatelessWidget {
         const BookDetailsViewAppBar(),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 90.w, vertical: 8.h),
-          child: const CustomBookImage(),
+          child: CustomBookImage(
+            book: book,
+          ),
         ),
         SizedBox(height: 15.h),
         Text(
-          'The Jungle Book',
+          book.title ?? '',
           style: AppStyles.textStyle30,
+          overflow: TextOverflow.ellipsis,
         ),
         Text(
-          'Rudyadr Kipling',
+          book.authorName ?? '',
           style: AppStyles.textStyle20.copyWith(
             fontFamily: AppFonts.playFairDisplay,
             color: Colors.white.withOpacity(.7),
@@ -33,7 +38,9 @@ class BookDetailsSection extends StatelessWidget {
           ),
         ),
         SizedBox(height: 10.h),
-        const CustomBookRating(),
+        CustomBookRating(
+          book: book,
+        ),
         SizedBox(height: 30.h),
         const ButtonAction(),
       ],
