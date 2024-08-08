@@ -5,16 +5,16 @@ sealed class BooksListViewState {}
 
 final class BooksListViewInitial extends BooksListViewState {}
 
-final class BooksListViewLoading extends BooksListViewState {}
+final class BooksListViewLoadingState extends BooksListViewState {}
 
-final class BooksListViewSuccess extends BooksListViewState {
+final class BooksListViewSuccessState extends BooksListViewState {
   final List<BookEntitiy> books;
 
-  BooksListViewSuccess({required this.books});
+  BooksListViewSuccessState({required this.books});
 }
 
-final class BooksListViewFailure extends BooksListViewState {
+final class BooksListViewFailureState extends BooksListViewState {
   final String errMessage;
 
-  BooksListViewFailure({required this.errMessage});
+  BooksListViewFailureState({required this.errMessage});
 }
