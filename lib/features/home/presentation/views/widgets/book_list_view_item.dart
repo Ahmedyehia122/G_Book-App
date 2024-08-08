@@ -1,6 +1,7 @@
 import 'package:bookly_app/core/constants/fonts.dart';
 import 'package:bookly_app/core/utils/routes.dart';
 import 'package:bookly_app/core/constants/styles.dart';
+import 'package:bookly_app/features/home/domain/entities/book_entitiy.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/best_seller_book_item.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/custom_book_rating.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +9,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 class BookListViewItem extends StatelessWidget {
-  const BookListViewItem({super.key});
+  const BookListViewItem({super.key, this.book});
+  final BookEntitiy? book;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,9 @@ class BookListViewItem extends StatelessWidget {
         child: Row(
           children: [
             // image
-            const BestSellerBookItem(),
+            BestSellerBookItem(
+              image: book?.image ?? '',
+            ),
             SizedBox(
               width: 30.w,
             ),
@@ -32,7 +36,7 @@ class BookListViewItem extends StatelessWidget {
                   SizedBox(
                     width: 200.w,
                     child: Text(
-                      'Harry Potter and the Goblet of Fire',
+                      book!.title ?? 'No title',
                       style: AppStyles.textStyle20
                           .copyWith(fontFamily: AppFonts.playFairDisplay),
                       maxLines: 2,
@@ -41,7 +45,7 @@ class BookListViewItem extends StatelessWidget {
                   ),
                   SizedBox(height: 3.h),
                   Text(
-                    'Jk.jonson',
+                    book?.authorName ?? 'No name',
                     style: AppStyles.textStyle14.copyWith(color: Colors.grey),
                   ),
                   SizedBox(height: 3.h),
@@ -49,11 +53,13 @@ class BookListViewItem extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        '19.99 \$',
+                        'Free',
                         style: AppStyles.textStyle20
                             .copyWith(fontWeight: FontWeight.bold),
                       ),
-                      const CustomBookRating()
+                      CustomBookRating(
+                        book: book,
+                      )
                     ],
                   ),
                 ],

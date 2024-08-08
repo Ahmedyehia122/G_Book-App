@@ -1,10 +1,12 @@
 import 'package:bookly_app/core/constants/styles.dart';
+import 'package:bookly_app/features/home/domain/entities/book_entitiy.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CustomBookRating extends StatelessWidget {
-  const CustomBookRating({super.key});
+  const CustomBookRating({super.key, this.book});
+  final BookEntitiy? book;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,7 @@ class CustomBookRating extends StatelessWidget {
         ),
         SizedBox(width: 5.w),
         Text(
-          '(2203)',
+          "(${book?.rating.toString()})",
           style: AppStyles.textStyle14,
         )
       ],
