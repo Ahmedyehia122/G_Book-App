@@ -1,7 +1,9 @@
+import 'package:bookly_app/core/utils/routes.dart';
 import 'package:bookly_app/features/home/domain/entities/book_entitiy.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/custom_book_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class CustomBooksListView extends StatelessWidget {
   const CustomBooksListView({super.key, required this.books});
@@ -20,8 +22,14 @@ class CustomBooksListView extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) {
             return Padding(
               padding: EdgeInsets.only(right: 10.w),
-              child: CustomBookImage(
-                book: books[index],
+              child: GestureDetector(
+                onTap: () {
+                  GoRouter.of(context)
+                      .push(Routes.kBookDetailsView, extra: books[index]);
+                },
+                child: CustomBookImage(
+                  book: books[index],
+                ),
               ),
             );
           },
