@@ -1,9 +1,11 @@
+import 'package:bookly_app/features/home/domain/entities/book_entitiy.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomBookImage extends StatelessWidget {
-  const CustomBookImage({super.key});
+  const CustomBookImage({super.key, this.book});
+  final BookEntitiy? book;
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +16,8 @@ class CustomBookImage extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(16.r),
           child: CachedNetworkImage(
-            imageUrl: testImage,
-            fit: BoxFit.cover,
+            imageUrl: book?.image ?? testImage,
+            fit: BoxFit.fill,
           ),
         ));
   }
