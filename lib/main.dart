@@ -1,4 +1,5 @@
 import 'package:bookly_app/app.dart';
+import 'package:bookly_app/core/functions/service_locator.dart';
 import 'package:bookly_app/core/utils/simble_bloc_observer.dart';
 import 'package:bookly_app/core/constants/hive_boxes.dart';
 import 'package:bookly_app/features/home/domain/entities/book_entitiy.dart';
@@ -7,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 
 void main() async {
+  setUpServiceLocator();
   Bloc.observer = SimbleBlocObserver();
   await Hive.initFlutter();
   Hive.registerAdapter(BookEntitiyAdapter());
