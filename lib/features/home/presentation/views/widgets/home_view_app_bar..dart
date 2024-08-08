@@ -1,5 +1,5 @@
 import 'package:bookly_app/core/constants/images.dart';
-import 'package:bookly_app/core/class/routes.dart';
+import 'package:bookly_app/core/utils/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
